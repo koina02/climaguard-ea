@@ -5,41 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ClimaGuard EA</title>
   <link rel="stylesheet" href="styles.css" />
-  <script src="script.js" defer></script>
 </head>
 <body>
+  <header>
+    <nav class="navbar">
+      <h1 class="brand">ClimaGuard EA</h1>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">ClimaGuard EA</div>
-    <ul class="nav-links">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-  </nav>
+  <main>
+    <section class="hero">
+      <h2>Real-Time Climate Monitoring for East Africa</h2>
+      <p>Stay alert. Stay informed. Stay resilient.</p>
+    </section>
 
-  <!-- Main Content -->
-  <main class="main-section">
-    <h1>Welcome to ClimaGuard East Africa</h1>
-    <p>Your real-time environmental dashboard for awareness and action.</p>
-    <div class="dashboard-placeholder">
-      <h2>Dashboard Overview</h2>
-      <p>Live data coming soon. Stay tuned!</p>
-    </div>
+    <section id="about" class="content-section">
+      <h2>About ClimaGuard EA</h2>
+      <p>
+        <strong>ClimaGuard EA</strong> is your regional hub for real-time climate intelligence across East Africa.
+        Designed for citizens, policymakers, and organizations, it delivers vital climate data, alerts, and insights tailored to the unique geography of the region.
+      </p>
+      <p>
+        Our MVP is just the beginning — expect advanced features like anomaly detection, air quality index (AQI) tracking, and live weather forecasts based on your location.
+      </p>
+    </section>
+
+    <section id="services" class="content-section">
+      <h2>Our Services</h2>
+      <ul>
+        <li>Real-time weather updates (coming soon)</li>
+        <li>Air Quality Index Monitoring</li>
+        <li>Climate anomaly detection (floods, heatwaves)</li>
+        <li>Custom regional reports and insights</li>
+        <li>Policy dashboard (Beta)</li>
+      </ul>
+    </section>
+
+    <section id="contact" class="content-section">
+      <h2>Contact Us</h2>
+      <p>Email: support@climaguard-ea.org</p>
+      <p>Phone: +254 712 345 678</p>
+    </section>
   </main>
 
-  <!-- Cookie Consent Popup -->
-  <div class="cookie-consent" id="cookieConsent">
-    <p>This website uses cookies to ensure you get the best experience. <a href="#">Learn more</a></p>
-    <button id="acceptCookies">Got it!</button>
+  <div id="cookie-consent" class="cookie-consent">
+    <p>This site uses cookies to improve your experience. By using this site, you accept our use of cookies.</p>
+    <button id="accept-cookie">Accept</button>
   </div>
 
-  <!-- Footer -->
   <footer>
-    <p>Powered by the East African People | ©2025 ClimaGuard EA</p>
+    <p>&copy; 2025 ClimaGuard EA. Powered by the People of East Africa.</p>
   </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>

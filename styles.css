@@ -1,4 +1,4 @@
-/* General Reset */
+
 * {
   margin: 0;
   padding: 0;
@@ -6,103 +6,80 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #F0F4F8;
+  color: #1A1A1A;
   line-height: 1.6;
-  background-color: #f5f9ff;
-  color: #2c3e50;
 }
 
-/* Navbar */
 .navbar {
+  background-color: #1D2955;
+  padding: 1rem;
+  color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #1d2955;
-  color: white;
-  padding: 15px 30px;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
 }
 
-.logo {
+.brand {
   font-size: 1.5rem;
-  font-weight: bold;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 1.5rem;
 }
 
-.nav-links li a {
+.nav-links a {
+  color: #fff;
   text-decoration: none;
-  color: white;
-  font-weight: 500;
 }
 
-.nav-links li a:hover {
-  text-decoration: underline;
-}
-
-/* Main Section */
-.main-section {
-  padding: 60px 20px;
+.hero {
+  background: linear-gradient(to right, #1D2955, #3A506B);
+  color: #fff;
+  padding: 4rem 2rem;
   text-align: center;
 }
 
-.dashboard-placeholder {
-  margin-top: 40px;
-  padding: 40px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  background: #ffffff;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
+.content-section {
+  padding: 2rem;
 }
 
-/* Cookie Consent */
+.content-section h2 {
+  color: #1D2955;
+  margin-bottom: 1rem;
+}
+
+.content-section ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+}
+
 .cookie-consent {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: #1d2955;
+  background: #1D2955;
   color: white;
-  text-align: center;
-  padding: 15px;
+  padding: 1rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 10px;
-}
-
-.cookie-consent a {
-  color: #00bcd4;
-  text-decoration: underline;
 }
 
 .cookie-consent button {
-  background-color: #00bcd4;
-  border: none;
+  background: #3A506B;
   color: white;
-  padding: 8px 14px;
-  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  border: none;
   cursor: pointer;
 }
 
-.cookie-consent button:hover {
-  background-color: #0097a7;
-}
-
-/* Footer */
 footer {
-  background-color: #1d2955;
-  color: white;
   text-align: center;
-  padding: 15px;
-  position: relative;
-  bottom: 0;
-  width: 100%;
+  background-color: #1D2955;
+  color: #fff;
+  padding: 1rem 0;
 }

@@ -1,14 +1,19 @@
+// DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
-  const cookieBanner = document.getElementById("cookieConsent");
-  const acceptBtn = document.getElementById("acceptCookies");
+  console.log("ClimaGuard EA Loaded");
 
-  // Check if cookies were already accepted
-  if (!localStorage.getItem("cookiesAccepted")) {
-    cookieBanner.style.display = "flex";
-  }
+  const cookieBanner = document.getElementById('cookie-consent');
+  const acceptBtn = document.getElementById('accept-cookie');
 
-  acceptBtn.addEventListener("click", () => {
-    localStorage.setItem("cookiesAccepted", "true");
-    cookieBanner.style.display = "none";
+  acceptBtn.addEventListener('click', () => {
+    cookieBanner.style.display = 'none';
+    localStorage.setItem('cookiesAccepted', true);
   });
+
+  // Show banner if not already accepted
+  if (!localStorage.getItem('cookiesAccepted')) {
+    cookieBanner.style.display = 'flex';
+  } else {
+    cookieBanner.style.display = 'none';
+  }
 });
