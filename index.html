@@ -1,45 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ClimaGuard EA</title>
-  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <header>
+  <header class="hero">
     <h1>ClimaGuard EA</h1>
-    <p>Tracking Climate. Predicting Anomalies. East Africa First.</p>
+    <p>Track climate. Spot anomalies. Protect East Africa.</p>
   </header>
 
-  <main>
-    <section id="weather">
-      <h2>Current Weather</h2>
-      <div id="weather-info">
-        <p>Loading...</p>
-      </div>
-    </section>
+  <section class="stats">
+    <div class="card">
+      <i class="wi wi-day-sunny"></i>
+      <h2 id="temperature">--°C</h2>
+      <p>Current Temp</p>
+    </div>
+    <div class="card">
+      <i class="wi wi-rain"></i>
+      <h2 id="rainfall">-- mm</h2>
+      <p>Rainfall</p>
+    </div>
+    <div class="card">
+      <i class="wi wi-fire"></i>
+      <h2 id="anomalies">--</h2>
+      <p>Detected Anomalies</p>
+    </div>
+  </section>
 
-    <section id="anomaly-alert">
-      <h2>Anomaly Detection</h2>
-      <div id="alert-box">Checking data...</div>
-    </section>
+  <section class="graph">
+    <h2>Monthly Climate Patterns</h2>
+    <canvas id="climateChart" height="100"></canvas>
+  </section>
 
-    <section id="report">
-      <h2>Report a Climate Event</h2>
-      <form id="report-form">
-        <input type="text" id="event" placeholder="e.g., Flash Flood in Kisumu" required />
-        <textarea id="description" placeholder="Describe the event..." required></textarea>
-        <button type="submit">Submit Report</button>
-      </form>
-      <div id="report-confirmation"></div>
-    </section>
-  </main>
+  <section class="cta">
+    <h2>Join the Movement</h2>
+    <p>Be part of the climate resilience mission across East Africa.</p>
+    <button>Subscribe to Anomaly Alerts</button>
+  </section>
 
   <footer>
-    <p>Built for East Africa | MVP v0.1</p>
+    <p>Built with heart in Kenya — © 2025 ClimaGuard EA</p>
   </footer>
 
   <script src="script.js"></script>
 </body>
 </html>
+

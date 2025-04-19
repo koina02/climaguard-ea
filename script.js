@@ -1,41 +1,27 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const weatherBox = document.getElementById("weather-info");
-  const alertBox = document.getElementById("alert-box");
-  const form = document.getElementById("report-form");
-  const confirmation = document.getElementById("report-confirmation");
+// Simulated data
+document.getElementById('temperature').textContent = `${Math.floor(Math.random() * 15 + 20)}°C`;
+document.getElementById('rainfall').textContent = `${Math.floor(Math.random() * 150)} mm`;
+document.getElementById('anomalies').textContent = `${Math.floor(Math.random() * 5)}`;
 
-  // Simulate pulling weather from OpenWeatherMap
-  const dummyWeather = {
-    temp: 36,
-    humidity: 60,
-    rainfall: 5,
-    wind: 12,
-  };
-
-  weatherBox.innerHTML = `
-    <p>Temperature: ${dummyWeather.temp}°C</p>
-    <p>Humidity: ${dummyWeather.humidity}%</p>
-    <p>Rainfall: ${dummyWeather.rainfall} mm</p>
-    <p>Wind: ${dummyWeather.wind} km/h</p>
-  `;
-
-  // Anomaly check
-  if (dummyWeather.temp > 35 || dummyWeather.rainfall > 50) {
-    alertBox.innerHTML = `<strong>Warning:</strong> Potential climate anomaly detected!`;
-    alertBox.style.color = "red";
-  } else {
-    alertBox.innerHTML = "All climate metrics within normal range.";
-    alertBox.style.color = "green";
+// Chart.js climate trend
+const ctx = document.getElementById('climateChart').getContext('2d');
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    datasets: [{
+      label: 'Avg Temp (°C)',
+      data: [28, 30, 33, 35, 34, 32],
+      borderColor: '#1d2955',
+      fill: false,
+      tension: 0.3
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: true },
+      title: { display: false }
+    }
   }
-
-  // Handle climate report
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const event = document.getElementById("event").value;
-    const desc = document.getElementById("description").value;
-    console.log("Event logged:", event, desc);
-
-    confirmation.innerText = "Report submitted. Thank you!";
-    form.reset();
-  });
 });
