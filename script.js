@@ -44,4 +44,3 @@ function initMap() {
 
 // Initialize the map when the page loads
 google.maps.event.addDomListener(window, 'load', initMap);
-
