@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ClimaGuard EA</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <header>
+    <h1>ClimaGuard EA</h1>
+    <p>Tracking Climate. Predicting Anomalies. East Africa First.</p>
+  </header>
+
+  <main>
+    <section id="weather">
+      <h2>Current Weather</h2>
+      <div id="weather-info">
+        <p>Loading...</p>
+      </div>
+    </section>
+
+    <section id="anomaly-alert">
+      <h2>Anomaly Detection</h2>
+      <div id="alert-box">Checking data...</div>
+    </section>
+
+    <section id="report">
+      <h2>Report a Climate Event</h2>
+      <form id="report-form">
+        <input type="text" id="event" placeholder="e.g., Flash Flood in Kisumu" required />
+        <textarea id="description" placeholder="Describe the event..." required></textarea>
+        <button type="submit">Submit Report</button>
+      </form>
+      <div id="report-confirmation"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built for East Africa | MVP v0.1</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
