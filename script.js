@@ -1,53 +1,50 @@
-const map = L.map("map").setView([0.0236, 37.9062], 6); // Centered on Kenya
+// Placeholder for future functionality like weather data, AQI, and anomalies
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("ClimaGuard Loaded - Features Coming Soon!");
 
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  maxZoom: 18,
-  attribution:
-    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
+    // Simulating map interaction for client preview
+    const mapContainer = document.querySelector('.map-container');
 
-// OpenWeatherMap API integration
-const apiKey = "YOUR_OPENWEATHERMAP_API_KEY";
-const weatherInfo = document.getElementById("weather-info");
+    mapContainer.addEventListener('click', () => {
+        // Simulate a zoom effect or a popup
+        alert("This would zoom into the map, or show detailed climate data at this point!");
+    });
 
-async function fetchWeather(lat, lon) {
-  try {
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
-    const response = await fetch(url);
-    const data = await response.json();
+    // Feature cards interaction - hover animation for a more engaging UI
+    const featureCards = document.querySelectorAll('.feature-cards .card');
 
-    const desc = data.weather[0].description;
-    const temp = data.main.temp;
-    const city = data.name;
+    featureCards.forEach(card => {
+        card.addEventListener('mouseover', () => {
+            card.style.transform = "scale(1.05)";
+            card.style.transition = "transform 0.3s ease-in-out";
+        });
 
-    weatherInfo.innerText = `Weather in ${city}: ${desc}, ${temp}°C`;
-  } catch (err) {
-    weatherInfo.innerText = "Could not fetch weather data.";
-    console.error(err);
-  }
-}
+        card.addEventListener('mouseout', () => {
+            card.style.transform = "scale(1)";
+        });
+    });
 
-// Track user location
-function locateUser() {
-  if (!navigator.geolocation) {
-    alert("Geolocation not supported.");
-    return;
-  }
+    // Simulate fetching weather data and showing it in the console for now
+    setTimeout(() => {
+        const weatherData = {
+            temperature: "25°C",
+            humidity: "65%",
+            condition: "Clear skies"
+        };
 
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      const { latitude, longitude } = position.coords;
-      map.setView([latitude, longitude], 10);
-      L.marker([latitude, longitude]).addTo(map)
-        .bindPopup("You are here.")
-        .openPopup();
-      fetchWeather(latitude, longitude);
-    },
-    () => {
-      alert("Could not access your location.");
-    }
-  );
-}
+        console.log("Mock Weather Data:", weatherData);
+        alert(`Weather Data (Mock): Temperature: ${weatherData.temperature}, Condition: ${weatherData.condition}`);
+    }, 2000);
 
-// Default weather at center
-fetchWeather(0.0236, 37.9062);
+    // Simulate alert for Anomaly Detection (Wildfire or Flood)
+    setTimeout(() => {
+        const anomaly = {
+            type: "Wildfire",
+            location: "Northern Kenya",
+            severity: "High"
+        };
+
+        console.log("Anomaly Detected:", anomaly);
+        alert(`Anomaly Alert: A ${anomaly.type} has been detected in ${anomaly.location}. Severity: ${anomaly.severity}`);
+    }, 5000);
+});

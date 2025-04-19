@@ -1,28 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ClimaGuard EA</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-    integrity="sha256-sA+4AmM0yW2iMUvZ+MZ4lhU5kkbQ60P9F1ZN62iD8Pg="
-    crossorigin=""
-  />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClimaGuard - East Africa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  <div id="map"></div>
-  <div id="dashboard">
-    <h2>ClimaGuard EA</h2>
-    <p id="weather-info">Loading weather data...</p>
-    <button onclick="locateUser()">Track My Location</button>
-  </div>
-  <footer>
-    ©2025 ClimaGuard EA | For East Africa | Powered by Leaflet, OpenWeather & OSM
-  </footer>
-  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
-  <script src="script.js"></script>
+
+    <!-- Navbar Section -->
+    <header>
+        <nav>
+            <div class="logo">ClimaGuard</div>
+            <ul class="nav-links">
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="dashboard">
+        <!-- Intro Section -->
+        <section class="intro">
+            <h1>Welcome to ClimaGuard</h1>
+            <p>Empowering East Africa with real-time climate monitoring and anomaly detection.</p>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <h2>Features Coming Soon</h2>
+            <div class="feature-cards">
+                <div class="card">
+                    <h3>Live Weather</h3>
+                    <p>Get the most accurate weather data with real-time updates.</p>
+                </div>
+                <div class="card">
+                    <h3>AQI Monitoring</h3>
+                    <p>Monitor air quality to safeguard health in your area.</p>
+                </div>
+                <div class="card">
+                    <h3>Anomaly Alerts</h3>
+                    <p>Stay ahead of wildfires, floods, and other environmental threats.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Preview Section -->
+        <section class="map">
+            <h2>Map Preview (Mock-Up)</h2>
+            <div class="map-container">
+                <!-- Placeholder for static map image -->
+                <img src="static-map.jpg" alt="East Africa Climate Map" />
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>Powered to the East African People © 2025</p>
+    </footer>
+
+    <script src="scripts.js"></script>
 </body>
+
 </html>
