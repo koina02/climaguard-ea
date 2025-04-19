@@ -1,74 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ClimaGuard EA</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
-  <header class="hero">
+  <header>
     <h1>ClimaGuard EA</h1>
-    <p>Track climate. Spot anomalies. Protect East Africa.</p>
+    <p>Monitoring Climate & Anomalies Across East Africa</p>
   </header>
 
-  <section class="stats">
-    <div class="card">
-      <i class="wi wi-day-sunny"></i>
-      <h2 id="temperature">--°C</h2>
-      <p>Current Temp</p>
-    </div>
-    <div class="card">
-      <i class="wi wi-rain"></i>
-      <h2 id="rainfall">-- mm</h2>
-      <p>Rainfall</p>
-    </div>
-    <div class="card">
-      <i class="wi wi-fire"></i>
-      <h2 id="anomalies">--</h2>
-      <p>Detected Anomalies</p>
-    </div>
-  </section>
+  <main>
+    <section class="overview">
+      <h2>Live Climate Map</h2>
+      <div id="search-container">
+        <input type="text" id="location-search" placeholder="Search location (e.g. Nairobi)" />
+        <button onclick="searchLocation()">Go</button>
+      </div>
+      <div id="map"></div>
+    </section>
+  </main>
 
-  <section class="graph">
-    <h2>Monthly Climate Patterns</h2>
-    <canvas id="climateChart" height="100"></canvas>
-  </section>
-
-  <section class="cta">
-    <h2>Join the Movement</h2>
-    <p>Be part of the climate resilience mission across East Africa.</p>
-    <button>Subscribe to Anomaly Alerts</button>
-  </section>
-
-  <footer>
-    <p>Built with heart in Kenya — © 2025 ClimaGuard EA</p>
-  </footer>
-
-<div id="analysis-panel" class="slide-panel">
-  <div class="panel-content">
-    <h2>East Africa Climate Intelligence</h2>
-    <p>Live geo-data feed and regional climate anomaly analysis.</p>
-    <div id="map" style="width: 100%; height: 300px; background: #ccc;">
-      <!-- Replace with map lib or embed -->
-      <p style="text-align:center; margin-top:130px;">Map Loading...</p>
+  <!-- Swipe-out Analysis Panel -->
+  <div id="analysis-panel" class="slide-panel">
+    <div class="panel-content">
+      <h2>East Africa Climate Intelligence</h2>
+      <p>Live geo-data feed and anomaly visualization.</p>
+      <div id="map-alt" style="width: 100%; height: 300px;"></div>
+      <button onclick="closePanel()">Back</button>
     </div>
-    <button onclick="closePanel()">Back</button>
   </div>
-</div>
+
   <script src="script.js"></script>
-<div id="analysis-panel" class="slide-panel">
-  <div class="panel-content">
-    <h2>East Africa Climate Intelligence</h2>
-    <p>Live geo-data feed and regional climate anomaly analysis.</p>
-    <div id="map" style="width: 100%; height: 300px; background: #ccc;">
-      <p style="text-align:center; margin-top:130px;">Map Loading...</p>
-    </div>
-    <button onclick="closePanel()">Back</button>
-  </div>
-</div>
 </body>
 </html>
 

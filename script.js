@@ -1,58 +1,66 @@
-// Simulated data
-document.getElementById('temperature').textContent = `${Math.floor(Math.random() * 15 + 20)}°C`;
-document.getElementById('rainfall').textContent = `${Math.floor(Math.random() * 150)} mm`;
-document.getElementById('anomalies').textContent = `${Math.floor(Math.random() * 5)}`;
+let map;
+let mapAlt;
 
-// Chart.js climate trend
-const ctx = document.getElementById('climateChart').getContext('2d');
-new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-    datasets: [{
-      label: 'Avg Temp (°C)',
-      data: [28, 30, 33, 35, 34, 32],
-      borderColor: '#1d2955',
-      fill: false,
-      tension: 0.3
-    }]
-  },
-  options: {
-    responsive: true,
-    plugins: {
-      legend: { display: true },
-      title: { display: false }
-    }
+function initMap() {
+  map = L.map('map').setView([0.0236, 37.9062], 6);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+  }).addTo(map);
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(position => {
+      const userCoords = [position.coords.latitude, position.coords.longitude];
+      map.setView(userCoords, 8);
+      L.marker(userCoords).addTo(map)
+        .bindPopup("You are here")
+        .openPopup();
+    });
   }
-});
+}
+
+function initAltMap() {
+  mapAlt = L.map('map-alt').setView([0.0236, 37.9062], 6);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+  }).addTo(mapAlt);
+}
+
+function searchLocation() {
+  const query = document.getElementById('location-search').value;
+  if (!query) return;
+
+  fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`)
+    .then(res => res.json())
+    .then(data => {
+      if (data.length > 0) {
+        const loc = [data[0].lat, data[0].lon];
+        map.setView(loc, 10);
+        L.marker(loc).addTo(map)
+          .bindPopup(`${query}`)
+          .openPopup();
+      } else {
+        alert("Location not found!");
+      }
+    });
+}
+
+// Swipe feature
 let startX = 0;
-document.body.addEventListener('touchstart', (e) => {
+document.body.addEventListener('touchstart', e => {
   startX = e.touches[0].clientX;
 });
 
-document.body.addEventListener('touchend', (e) => {
+document.body.addEventListener('touchend', e => {
   const endX = e.changedTouches[0].clientX;
   if (startX - endX > 50) {
-    // Swipe left detected
     document.getElementById('analysis-panel').classList.add('active');
+    if (!mapAlt) initAltMap();
   }
 });
 
 function closePanel() {
   document.getElementById('analysis-panel').classList.remove('active');
 }
-let startX = 0;
-document.body.addEventListener('touchstart', (e) => {
-  startX = e.touches[0].clientX;
-});
 
-document.body.addEventListener('touchend', (e) => {
-  const endX = e.changedTouches[0].clientX;
-  if (startX - endX > 50) {
-    document.getElementById('analysis-panel').classList.add('active');
-  }
-});
-
-function closePanel() {
-  document.getElementById('analysis-panel').classList.remove('active');
-}
+document.addEventListener("DOMContentLoaded", initMap);
