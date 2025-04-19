@@ -1,92 +1,52 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
-}
-
+/* General Styles */
 body {
-  background-color: #f1eee4;
-  color: #100c24;
-  overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+    overflow-x: hidden; /* Disable horizontal scrolling */
 }
 
-header {
-  background-color: #1d2955;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
+/* Navbar Styles */
+.navbar {
+    background-color: #1D2955; /* Dark Blue */
+    padding: 15px;
+    color: #F1EEE4; /* Soft White */
+    text-align: center;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
-main {
-  padding: 20px;
+.navbar h1 {
+    margin: 0;
 }
 
-h2 {
-  color: #1d2955;
-  margin-bottom: 10px;
+/* Search Bar Styles */
+#search-bar {
+    width: 50%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #fff;
 }
 
-#map, #map-alt {
-  width: 100%;
-  height: 300px;
-  border-radius: 6px;
-  margin-top: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/* Full-Screen Map Styles */
+#map {
+    height: 100vh; /* Full screen height */
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
-/* Search Bar */
-#search-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
-#location-search {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px 0 0 6px;
-  font-size: 16px;
-}
-
-#search-container button {
-  padding: 10px 20px;
-  border: none;
-  background-color: #1d2955;
-  color: white;
-  border-radius: 0 6px 6px 0;
-  cursor: pointer;
-}
-
-/* Slide Panel */
-.slide-panel {
-  position: fixed;
-  top: 0;
-  left: 100%;
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
-  transition: left 0.4s ease;
-  z-index: 999;
-  padding: 20px;
-}
-
-.slide-panel.active {
-  left: 0;
-}
-
-.panel-content {
-  max-width: 800px;
-  margin: auto;
-}
-
-.slide-panel button {
-  background-color: #1d2955;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  margin-top: 20px;
-  border-radius: 5px;
-  cursor: pointer;
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    #search-bar {
+        width: 80%;
+    }
 }

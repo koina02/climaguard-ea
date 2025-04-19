@@ -1,66 +1,47 @@
-let map;
-let mapAlt;
+let map, heatmap;
 
+// Initialize the map
 function initMap() {
-  map = L.map('map').setView([0.0236, 37.9062], 6);
-
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-  }).addTo(map);
-
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(position => {
-      const userCoords = [position.coords.latitude, position.coords.longitude];
-      map.setView(userCoords, 8);
-      L.marker(userCoords).addTo(map)
-        .bindPopup("You are here")
-        .openPopup();
+    // Create the map centered on Nairobi, Kenya
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: -1.286389, lng: 36.817223}, // Nairobi as default center
+        zoom: 7,
+        mapTypeId: 'roadmap'
     });
-  }
-}
 
-function initAltMap() {
-  mapAlt = L.map('map-alt').setView([0.0236, 37.9062], 6);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-  }).addTo(mapAlt);
-}
+    // Sample heatmap data (replace with actual climate data)
+    const heatmapData = [
+        new google.maps.LatLng(-1.286389, 36.817223),
+        new google.maps.LatLng(-0.023559, 37.906193),
+        new google.maps.LatLng(-1.292066, 36.821946),
+        new google.maps.LatLng(-0.919220, 34.692800),
+    ];
 
-function searchLocation() {
-  const query = document.getElementById('location-search').value;
-  if (!query) return;
+    // Create the heatmap layer
+    heatmap = new google.maps.visualization.HeatmapLayer({
+        data: heatmapData,
+        map: map,
+        radius: 20
+    });
 
-  fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`)
-    .then(res => res.json())
-    .then(data => {
-      if (data.length > 0) {
-        const loc = [data[0].lat, data[0].lon];
-        map.setView(loc, 10);
-        L.marker(loc).addTo(map)
-          .bindPopup(`${query}`)
-          .openPopup();
-      } else {
-        alert("Location not found!");
-      }
+    // Search bar logic
+    const searchInput = document.getElementById('search-bar');
+    const autocomplete = new google.maps.places.Autocomplete(searchInput);
+    autocomplete.bindTo('bounds', map);
+
+    // When a place is selected, center the map on that location
+    autocomplete.addListener('place_changed', function() {
+        const place = autocomplete.getPlace();
+        if (!place.geometry) {
+            return;
+        }
+
+        // Set map view to the selected location
+        map.setCenter(place.geometry.location);
+        map.setZoom(10);
     });
 }
 
-// Swipe feature
-let startX = 0;
-document.body.addEventListener('touchstart', e => {
-  startX = e.touches[0].clientX;
-});
+// Initialize the map when the page loads
+google.maps.event.addDomListener(window, 'load', initMap);
 
-document.body.addEventListener('touchend', e => {
-  const endX = e.changedTouches[0].clientX;
-  if (startX - endX > 50) {
-    document.getElementById('analysis-panel').classList.add('active');
-    if (!mapAlt) initAltMap();
-  }
-});
-
-function closePanel() {
-  document.getElementById('analysis-panel').classList.remove('active');
-}
-
-document.addEventListener("DOMContentLoaded", initMap);
