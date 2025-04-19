@@ -25,3 +25,34 @@ new Chart(ctx, {
     }
   }
 });
+let startX = 0;
+document.body.addEventListener('touchstart', (e) => {
+  startX = e.touches[0].clientX;
+});
+
+document.body.addEventListener('touchend', (e) => {
+  const endX = e.changedTouches[0].clientX;
+  if (startX - endX > 50) {
+    // Swipe left detected
+    document.getElementById('analysis-panel').classList.add('active');
+  }
+});
+
+function closePanel() {
+  document.getElementById('analysis-panel').classList.remove('active');
+}
+let startX = 0;
+document.body.addEventListener('touchstart', (e) => {
+  startX = e.touches[0].clientX;
+});
+
+document.body.addEventListener('touchend', (e) => {
+  const endX = e.changedTouches[0].clientX;
+  if (startX - endX > 50) {
+    document.getElementById('analysis-panel').classList.add('active');
+  }
+});
+
+function closePanel() {
+  document.getElementById('analysis-panel').classList.remove('active');
+}
