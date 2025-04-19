@@ -1,35 +1,53 @@
-let map, heatmap;
+const map = L.map("map").setView([0.0236, 37.9062], 6); // Centered on Kenya
 
-function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -1.286389, lng: 36.817223 },
-    zoom: 7,
-    mapTypeId: "roadmap",
-  });
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  maxZoom: 18,
+  attribution:
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
 
-  const heatmapData = [
-    new google.maps.LatLng(-1.286389, 36.817223),
-    new google.maps.LatLng(-0.023559, 37.906193),
-    new google.maps.LatLng(-1.292066, 36.821946),
-    new google.maps.LatLng(-0.919220, 34.692800),
-  ];
+// OpenWeatherMap API integration
+const apiKey = "YOUR_OPENWEATHERMAP_API_KEY";
+const weatherInfo = document.getElementById("weather-info");
 
-  heatmap = new google.maps.visualization.HeatmapLayer({
-    data: heatmapData,
-    map: map,
-    radius: 20,
-  });
+async function fetchWeather(lat, lon) {
+  try {
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+    const response = await fetch(url);
+    const data = await response.json();
 
-  const searchInput = document.getElementById("search-bar");
-  const autocomplete = new google.maps.places.Autocomplete(searchInput);
-  autocomplete.bindTo("bounds", map);
+    const desc = data.weather[0].description;
+    const temp = data.main.temp;
+    const city = data.name;
 
-  autocomplete.addListener("place_changed", function () {
-    const place = autocomplete.getPlace();
-    if (!place.geometry) return;
-    map.setCenter(place.geometry.location);
-    map.setZoom(10);
-  });
+    weatherInfo.innerText = `Weather in ${city}: ${desc}, ${temp}°C`;
+  } catch (err) {
+    weatherInfo.innerText = "Could not fetch weather data.";
+    console.error(err);
+  }
 }
 
-google.maps.event.addDomListener(window, "load", initMap);
+// Track user location
+function locateUser() {
+  if (!navigator.geolocation) {
+    alert("Geolocation not supported.");
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      const { latitude, longitude } = position.coords;
+      map.setView([latitude, longitude], 10);
+      L.marker([latitude, longitude]).addTo(map)
+        .bindPopup("You are here.")
+        .openPopup();
+      fetchWeather(latitude, longitude);
+    },
+    () => {
+      alert("Could not access your location.");
+    }
+  );
+}
+
+// Default weather at center
+fetchWeather(0.0236, 37.9062);

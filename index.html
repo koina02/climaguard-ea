@@ -2,27 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ClimaGuard EA</title>
   <link rel="stylesheet" href="styles.css" />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+    integrity="sha256-sA+4AmM0yW2iMUvZ+MZ4lhU5kkbQ60P9F1ZN62iD8Pg="
+    crossorigin=""
+  />
 </head>
 <body>
-  <!-- Navbar -->
-  <div class="navbar">
-    <h1>ClimaGuard EA</h1>
-    <input type="text" id="search-bar" placeholder="Search location..." />
-  </div>
-
-  <!-- Map -->
   <div id="map"></div>
-
-  <!-- Footer -->
+  <div id="dashboard">
+    <h2>ClimaGuard EA</h2>
+    <p id="weather-info">Loading weather data...</p>
+    <button onclick="locateUser()">Track My Location</button>
+  </div>
   <footer>
-    © 2025 ClimaGuard EA | Powered by Ian Koina
+    ©2025 ClimaGuard EA | For East Africa | Powered by Leaflet, OpenWeather & OSM
   </footer>
-
-  <!-- Google Maps API -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization,places"></script>
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
